@@ -1,5 +1,6 @@
 package external;
 
+import mediator.Radiator;
 import mediator.TemperatureModel;
 
 public class Thermometer implements Runnable
@@ -8,11 +9,13 @@ public class Thermometer implements Runnable
   private double currentTemperature;
   private int distance;
   private TemperatureModel temperatureModel;
+  private Radiator radiator;
 
-  public Thermometer(String id, double t, int d, TemperatureModel model) {
+  public Thermometer(String id, double t, int d, TemperatureModel model, Radiator radiator) {
     this.id = id;
     this.currentTemperature = t;
     this.distance = d;
+    this.radiator = radiator;
     temperatureModel = model;
   }
   /**
@@ -69,7 +72,7 @@ public class Thermometer implements Runnable
   @Override public void run()
   {
     while(true) {
-      currentTemperature = temperature(currentTemperature, 2, distance, 0, 6);
+      currentTemperature = temperature(currentTemperature, radiator.getPower(), distance, 0, 6);
       System.out.println("Id: " + id + ", Temp: " + currentTemperature);
       temperatureModel.addTemperature(id, currentTemperature);
       try {

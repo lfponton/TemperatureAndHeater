@@ -2,7 +2,6 @@ package mediator;
 
 import model.Temperature;
 import model.TemperatureList;
-import util.Subject;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

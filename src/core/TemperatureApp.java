@@ -15,9 +15,11 @@ public class TemperatureApp extends Application
     viewHandler.start();
 
     Thread t1 = new Thread(new Thermometer("t1", 10, 1,
-        modelFactory.getTemperatureModel()));
+        modelFactory.getTemperatureModel(), viewModelFactory.getHeaterViewModel().getRadiator()));
     Thread t2 = new Thread(new Thermometer("t2", 10, 7,
-        modelFactory.getTemperatureModel()));
+        modelFactory.getTemperatureModel(), viewModelFactory.getHeaterViewModel().getRadiator()));
+    t1.setDaemon(true);
+    t2.setDaemon(true);
     t1.start();
     t2.start();
   }

@@ -1,6 +1,7 @@
 package view.temperature;
 
 import core.ViewHandler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -19,5 +20,10 @@ public class TemperatureViewController
 
     temperature1Label1.textProperty().bind(temperatureViewModel.getTemperature1());
     temperature1Label2.textProperty().bind(temperatureViewModel.getTemperature2());
+  }
+
+  public void onControlHeaterButton(ActionEvent actionEvent)
+  {
+    viewHandler.openHeaterView();
   }
 }
