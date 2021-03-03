@@ -5,28 +5,43 @@ import java.util.List;
 
 public class TemperatureList
 {
-  private List<Temperature> temperatureList;
+  private List<Temperature> indoorTemperatureList;
+  private List<Temperature> outdoorTemperatureList;
 
   public TemperatureList() {
-    this.temperatureList = new ArrayList<>();
+    this.indoorTemperatureList = new ArrayList<>();
+    this.outdoorTemperatureList = new ArrayList<>();
   }
 
-  public void addTemperature (Temperature temperature) {
-    temperatureList.add(temperature);
+  public void addIndoorTemperature(Temperature temperature) {
+    indoorTemperatureList.add(temperature);
   }
 
-  public Temperature getLastTemperature(String id) {
-    if (temperatureList.size() < 1) {
+  public void addOutdoorTemperature(Temperature temperature) {
+    outdoorTemperatureList.add(temperature);
+  }
+
+  public Temperature getLastIndoorTemperature(String id) {
+    if (indoorTemperatureList.size() < 1) {
       return null;
     }
     if (id == null) {
-      return temperatureList.get(temperatureList.size() - 1);
+      return indoorTemperatureList.get(indoorTemperatureList.size() - 1);
     }
-    for (int i = temperatureList.size() - 1; i >= 0; i--) {
-      if (id.equals(temperatureList.get(i).getId())) {
-        return temperatureList.get(i);
+    for (int i = indoorTemperatureList.size() - 1; i >= 0; i--) {
+      if (id.equals(indoorTemperatureList.get(i).getId())) {
+        return indoorTemperatureList.get(i);
       }
     }
     return null;
+  }
+
+  public Temperature getLatOutdoorTemperature() {
+    if (outdoorTemperatureList.size() < 1) {
+      return null;
+    }
+    else {
+      return outdoorTemperatureList.get(outdoorTemperatureList.size() - 1);
+    }
   }
 }

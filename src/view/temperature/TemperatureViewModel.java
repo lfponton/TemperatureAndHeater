@@ -12,26 +12,35 @@ import java.beans.PropertyChangeEvent;
 
 public class TemperatureViewModel
 {
-  private StringProperty temperature1, temperature2;
+  private StringProperty temperature1, temperature2, outdoorTemperature;
   private TemperatureModel temperatureModel;
 
   public TemperatureViewModel(TemperatureModel temperatureModel) {
     this.temperatureModel = temperatureModel;
     this.temperature1 = new SimpleStringProperty();
     this.temperature2 = new SimpleStringProperty();
+    this.outdoorTemperature = new SimpleStringProperty();
     this.temperatureModel.addListener(this::updateTemperature);
   }
 
   private void updateTemperature(PropertyChangeEvent evt)
   {
     Platform.runLater(() -> {
-      Temperature newTemperature = (Temperature) evt.getNewValue();
-      if (newTemperature.getId().equals("t1"))
+      if (evt.getPropertyName().equals("IndoorTemperatureChange"))
       {
-        temperature1.setValue(newTemperature.toString());
+        Temperature newIndoorTemperature = (Temperature) evt.getNewValue();
+        if (newIndoorTemperature.getId().equals("t1"))
+        {
+          temperature1.setValue(newIndoorTemperature.toString());
+        }
+        else
+        {
+          temperature2.setValue(newIndoorTemperature.toString());
+        }
       }
-      else {
-        temperature2.setValue(newTemperature.toString());
+      if (evt.getPropertyName().equals("OutdoorTemperatureChange"))
+      {
+        outdoorTemperature.setValue(((Temperature) evt.getNewValue()).toString());
       }
     });
   }
@@ -42,5 +51,6 @@ public class TemperatureViewModel
   public StringProperty getTemperature2() {
     return temperature2;
   }
+  public StringProperty getOutdoorTemperature() { return  outdoorTemperature; }
 
 }

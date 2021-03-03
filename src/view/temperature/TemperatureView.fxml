@@ -5,22 +5,26 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.temperature.TemperatureViewController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="Temperature 1" fx:id="temperature1Label1"/>
+            <Label fx:id="temperature1Label1" text="Temperature 1" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="Temperature 2" fx:id="temperature1Label2"/>
+            <Label fx:id="temperature1Label2" text="Temperature 2" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="Control Heater" onAction="#onControlHeaterButton"/>
+            <Label text="Outdoor Temperature" fx:id="outdoorTemperatureLabel"/>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onControlHeaterButton" text="Control Heater" />
          </children>
       </HBox>
    </children>

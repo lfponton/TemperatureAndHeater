@@ -10,14 +10,31 @@ public class Thermometer implements Runnable
   private int distance;
   private TemperatureModel temperatureModel;
   private Radiator radiator;
+  private ExternalTemperature outdoorTemperature;
+  private static final double HIGH = 20;
+  private static final double LOW = -20;
+  private String type;
 
-  public Thermometer(String id, double t, int d, TemperatureModel model, Radiator radiator) {
+  public Thermometer(String id, double t, int d, ExternalTemperature t0, TemperatureModel model,
+      Radiator radiator)
+  {
     this.id = id;
-    this.currentTemperature = t;
-    this.distance = d;
+    currentTemperature = t;
+    distance = d;
+    outdoorTemperature = t0;
     this.radiator = radiator;
     temperatureModel = model;
+    type = "indoor";
   }
+
+  public Thermometer(String id, ExternalTemperature t0, TemperatureModel model)
+  {
+    this.id = id;
+    outdoorTemperature = t0;
+    temperatureModel = model;
+    type = "outdoor";
+  }
+
   /**
    * Calculating the internal temperature in one of two locations.
    * This includes a term from a heater (depending on location and
@@ -69,13 +86,32 @@ public class Thermometer implements Runnable
     return t0;
   }
 
+  public String getType()
+  {
+    return type;
+  }
+
   @Override public void run()
   {
-    while(true) {
-      currentTemperature = temperature(currentTemperature, radiator.getPower(), distance, 0, 6);
-      System.out.println("Id: " + id + ", Temp: " + currentTemperature);
-      temperatureModel.addTemperature(id, currentTemperature);
-      try {
+    while (true)
+    {
+      if (getType().equals("outdoor"))
+      {
+        outdoorTemperature.setExternalTemperature(
+            externalTemperature(outdoorTemperature.getExternalTemperature(), LOW, HIGH));
+        System.out.println("Outdoor Temperature: " + outdoorTemperature.getExternalTemperature());
+        temperatureModel.addOutdoorTemperature(outdoorTemperature.getExternalTemperature());
+      }
+      else
+      {
+        currentTemperature = temperature(currentTemperature,
+            radiator.getPower(), distance, outdoorTemperature.getExternalTemperature(), 6);
+        System.out.println("Id: " + id + ", Temp: " + currentTemperature);
+        temperatureModel
+            .addTemperature(id, currentTemperature);
+      }
+      try
+      {
         Thread.sleep(2000);
       }
       catch (InterruptedException e)

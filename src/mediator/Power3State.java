@@ -8,7 +8,7 @@ public class Power3State implements RadiatorState
     thread = new Thread(() -> {
       try
       {
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         radiator.turnDown();
       } catch (InterruptedException e) {
       }

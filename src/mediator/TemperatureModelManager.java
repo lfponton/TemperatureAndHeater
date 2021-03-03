@@ -16,17 +16,31 @@ public class TemperatureModelManager implements TemperatureModel
     support = new PropertyChangeSupport(this);
   }
 
-  @Override public void addTemperature(String id, double temperature)
+  @Override public void addTemperature(String id, double indoorTemperature)
   {
-    Temperature t = new Temperature(id, temperature);
-    Temperature old = getLastInsertedTemperature(null);
-    this.temperatureList.addTemperature(t);
-    support.firePropertyChange("TemperatureChange", old, t);
+    Temperature t = new Temperature(id, indoorTemperature);
+    Temperature old = getLastInsertedIndoorTemperature(null);
+    this.temperatureList.addIndoorTemperature(t);
+
+    support.firePropertyChange("IndoorTemperatureChange", old, t);
+
   }
 
-  @Override public Temperature getLastInsertedTemperature(String id)
+  @Override public void addOutdoorTemperature(double outdoorTemperature)
   {
-    return temperatureList.getLastTemperature(id);
+    Temperature t = new Temperature("t0", outdoorTemperature);
+    this.temperatureList.addOutdoorTemperature(t);
+    support.firePropertyChange("OutdoorTemperatureChange", null, t);
+  }
+
+  @Override public Temperature getLastInsertedIndoorTemperature(String id)
+  {
+    return temperatureList.getLastIndoorTemperature(id);
+  }
+
+  @Override public Temperature getLatInsertedOutdoorTemperature()
+  {
+    return temperatureList.getLatOutdoorTemperature();
   }
 
   @Override public void addListener(PropertyChangeListener listener)
