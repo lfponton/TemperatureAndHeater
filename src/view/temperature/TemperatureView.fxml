@@ -9,17 +9,27 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label fx:id="temperature1Label1" text="Temperature 1" />
+            <VBox prefHeight="80.0" prefWidth="298.0">
+               <children>
+                  <Label fx:id="temperature1Label1" text="Temperature 1" />
+                  <Label fx:id="warningLabel1" text="Warning 1" textFill="RED" />
+               </children>
+            </VBox>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label fx:id="temperature1Label2" text="Temperature 2" />
+            <VBox prefHeight="80.0" prefWidth="299.0">
+               <children>
+                  <Label fx:id="temperature1Label2" text="Temperature 2" />
+                  <Label fx:id="warningLabel2" text="Warning 2" textFill="RED" />
+               </children>
+            </VBox>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="Outdoor Temperature" fx:id="outdoorTemperatureLabel"/>
+            <Label fx:id="outdoorTemperatureLabel" text="Outdoor Temperature" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
@@ -27,5 +37,6 @@
             <Button mnemonicParsing="false" onAction="#onControlHeaterButton" text="Control Heater" />
          </children>
       </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
    </children>
 </VBox>

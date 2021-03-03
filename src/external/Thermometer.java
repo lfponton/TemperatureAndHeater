@@ -91,6 +91,14 @@ public class Thermometer implements Runnable
     return type;
   }
 
+  public static double getHigh() {
+    return HIGH;
+  }
+
+  public static double getLow() {
+    return LOW;
+  }
+
   @Override public void run()
   {
     while (true)
@@ -112,7 +120,7 @@ public class Thermometer implements Runnable
       }
       try
       {
-        Thread.sleep(2000);
+        Thread.sleep(10000);
       }
       catch (InterruptedException e)
       {

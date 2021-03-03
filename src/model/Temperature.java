@@ -21,6 +21,6 @@ public class Temperature
   }
 
   public String toString() {
-    return String.format("%s; %.1f", id, temperature);
+    return String.format("Temperature %s: %.1f", id, temperature);
   }
 }

@@ -10,6 +10,8 @@ public class TemperatureViewController
   @FXML private Label temperature1Label1;
   @FXML private Label temperature1Label2;
   @FXML private Label outdoorTemperatureLabel;
+  @FXML private Label warningLabel1;
+  @FXML private Label warningLabel2;
 
   private ViewHandler viewHandler;
   private TemperatureViewModel temperatureViewModel;
@@ -22,6 +24,8 @@ public class TemperatureViewController
     temperature1Label1.textProperty().bind(temperatureViewModel.getTemperature1());
     temperature1Label2.textProperty().bind(temperatureViewModel.getTemperature2());
     outdoorTemperatureLabel.textProperty().bind(temperatureViewModel.getOutdoorTemperature());
+    warningLabel1.textProperty().bind(temperatureViewModel.getWarning1());
+    warningLabel2.textProperty().bind(temperatureViewModel.getWarning2());
   }
 
   public void onControlHeaterButton(ActionEvent actionEvent)

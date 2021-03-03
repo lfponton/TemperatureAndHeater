@@ -1,5 +1,6 @@
 package mediator;
 
+import external.Thermometer;
 import model.Temperature;
 import model.TemperatureList;
 
@@ -21,8 +22,18 @@ public class TemperatureModelManager implements TemperatureModel
     Temperature t = new Temperature(id, indoorTemperature);
     Temperature old = getLastInsertedIndoorTemperature(null);
     this.temperatureList.addIndoorTemperature(t);
-
     support.firePropertyChange("IndoorTemperatureChange", old, t);
+    if (t.getTemperature() > Thermometer.getHigh())
+    {
+      support.firePropertyChange("tooHigh", null, t);
+    }
+    else if (t.getTemperature() < Thermometer.getLow())
+    {
+      support.firePropertyChange("tooLow", null, t);
+    }
+    else {
+      support.firePropertyChange("normal", null, t);
+    }
 
   }
 
