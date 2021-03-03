@@ -3,15 +3,15 @@ package mediator;
 public class Power3State implements RadiatorState
 {
   private static final int power = 3;
-
+  private Thread thread;
   public Power3State(Radiator radiator) {
-    Thread thread = new Thread(() -> {
+    thread = new Thread(() -> {
       try
       {
         Thread.sleep(2000);
+        radiator.turnDown();
       } catch (InterruptedException e) {
       }
-      radiator.turnDown();
     });
     thread.setDaemon(true);
     thread.start();
@@ -24,7 +24,7 @@ public class Power3State implements RadiatorState
 
   @Override public void turnDown(Radiator radiator)
   {
-    Thread.currentThread().interrupt();
+    thread.interrupt();
     radiator.setCurrentState(new Power2State());
   }
 
