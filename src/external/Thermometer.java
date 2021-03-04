@@ -13,7 +13,6 @@ public class Thermometer implements Runnable
   private ExternalTemperature outdoorTemperature;
   private static final double HIGH = 20;
   private static final double LOW = -20;
-  private String type;
 
   public Thermometer(String id, double t, int d, ExternalTemperature t0, TemperatureModel model,
       Radiator radiator)
@@ -24,7 +23,6 @@ public class Thermometer implements Runnable
     outdoorTemperature = t0;
     this.radiator = radiator;
     temperatureModel = model;
-    type = "indoor";
   }
 
   public Thermometer(String id, ExternalTemperature t0, TemperatureModel model)
@@ -32,7 +30,6 @@ public class Thermometer implements Runnable
     this.id = id;
     outdoorTemperature = t0;
     temperatureModel = model;
-    type = "outdoor";
   }
 
   /**
@@ -67,29 +64,6 @@ public class Thermometer implements Runnable
     return t;
   }
 
-  /**
-   * Calculating the external temperature.
-   * Values are only valid if the temperature is being measured
-   * approximately every 10th second.
-   *
-   * @param t0  the last measured external temperature
-   * @param min a lower limit (may temporally be deceeded)
-   * @param max an upper limit (may temporally be exceeded)
-   * @return an updated external temperature
-   */
-  public double externalTemperature(double t0, double min, double max)
-  {
-    double left = t0 - min;
-    double right = max - t0;
-    int sign = Math.random() * (left + right) > left ? 1 : -1;
-    t0 += sign * Math.random();
-    return t0;
-  }
-
-  public String getType()
-  {
-    return type;
-  }
 
   public static double getHigh() {
     return HIGH;
@@ -103,21 +77,11 @@ public class Thermometer implements Runnable
   {
     while (true)
     {
-      if (getType().equals("outdoor"))
-      {
-        outdoorTemperature.setExternalTemperature(
-            externalTemperature(outdoorTemperature.getExternalTemperature(), LOW, HIGH));
-        System.out.println("Outdoor Temperature: " + outdoorTemperature.getExternalTemperature());
-        temperatureModel.addOutdoorTemperature(outdoorTemperature.getExternalTemperature());
-      }
-      else
-      {
         currentTemperature = temperature(currentTemperature,
             radiator.getPower(), distance, outdoorTemperature.getExternalTemperature(), 6);
         System.out.println("Id: " + id + ", Temp: " + currentTemperature);
         temperatureModel
             .addTemperature(id, currentTemperature);
-      }
       try
       {
         Thread.sleep(10000);

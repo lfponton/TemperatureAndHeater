@@ -15,16 +15,19 @@ public class TemperatureApp extends Application
     ViewHandler viewHandler = new ViewHandler(stage, viewModelFactory);
     viewHandler.start();
 
-    ExternalTemperature externalTemperature = new ExternalTemperature(10);
+    ExternalTemperature externalTemperature = new ExternalTemperature(10,
+        modelFactory.getTemperatureModel());
 
     Thread t1 = new Thread(new Thermometer("t1", 10, 1, externalTemperature,
         modelFactory.getTemperatureModel(), viewModelFactory.getHeaterViewModel().getRadiator()));
     Thread t2 = new Thread(new Thermometer("t2", 10, 7, externalTemperature,
         modelFactory.getTemperatureModel(), viewModelFactory.getHeaterViewModel().getRadiator()));
-    Thread t0 = new Thread(new Thermometer("t0" , externalTemperature, modelFactory.getTemperatureModel()));
+    Thread t0 = new Thread(externalTemperature);
+
     t0.setDaemon(true);
     t1.setDaemon(true);
     t2.setDaemon(true);
+
     t0.start();
     t1.start();
     t2.start();
