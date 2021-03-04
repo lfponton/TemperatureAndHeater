@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.chart.TemperatureChartController;
+import view.chart.TemperatureChartViewModel;
 import view.heater.HeaterViewController;
 import view.temperature.TemperatureViewController;
 
@@ -13,8 +15,9 @@ import java.io.IOException;
 public class ViewHandler
 {
   private Stage stage;
-  public Scene mainScene;
-  public Scene heaterScene;
+  private Scene mainScene;
+  private Scene heaterScene;
+  private Scene chartScene;
   private ViewModelFactory viewModelFactory;
 
   public ViewHandler(Stage stage, ViewModelFactory viewModelFactory) {
@@ -51,6 +54,19 @@ public class ViewHandler
     }
     stage.setTitle("Control Heater");
     stage.setScene(heaterScene);
+  }
+
+  public void openTemperatureChartView() {
+    FXMLLoader loader = new FXMLLoader();
+    if (chartScene == null)
+    {
+      Parent root = getRootByPath("../view/chart/TemperatureChart.fxml", loader);
+      TemperatureChartController controller = loader.getController();
+      controller.init(this, viewModelFactory.getTemperatureChartViewModel());
+      chartScene = new Scene(root);
+    }
+    stage.setTitle("Temperature Chart");
+    stage.setScene(chartScene);
   }
 
   private Parent getRootByPath(String path, FXMLLoader loader)

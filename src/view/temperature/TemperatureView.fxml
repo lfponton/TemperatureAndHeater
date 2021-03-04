@@ -37,6 +37,9 @@
             <Button mnemonicParsing="false" onAction="#onControlHeaterButton" text="Control Heater" />
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" />
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onViewChartButton" text="View Data" />
+         </children></HBox>
    </children>
 </VBox>

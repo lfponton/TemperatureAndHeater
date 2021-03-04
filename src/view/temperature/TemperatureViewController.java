@@ -32,4 +32,9 @@ public class TemperatureViewController
   {
     viewHandler.openHeaterView();
   }
+
+  public  void onViewChartButton(ActionEvent actionEvent)
+  {
+    viewHandler.openTemperatureChartView();
+  }
 }

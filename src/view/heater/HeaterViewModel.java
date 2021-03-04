@@ -1,6 +1,5 @@
 package view.heater;
 
-import javafx.application.Platform;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.SimpleStringProperty;
 import mediator.Radiator;
@@ -23,15 +22,16 @@ public class HeaterViewModel
     this.radiator.addListener(this::updatePowerState);
   }
 
-  public void updatePowerState(PropertyChangeEvent evt) {
-    Platform.runLater(() -> {
-      power.set(String.valueOf(evt.getNewValue()));
-    });
+  public void updatePowerState(PropertyChangeEvent evt)
+  {
+    power.set(String.valueOf(evt.getNewValue()));
   }
 
-  public StringProperty getRadiatorPowerProperty() {
+  public StringProperty getRadiatorPowerProperty()
+  {
     return power;
   }
+
   public Radiator getRadiator()
   {
     return radiator;
