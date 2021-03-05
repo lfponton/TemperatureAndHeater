@@ -1,6 +1,4 @@
-package mediator;
-
-import util.Subject;
+package mediator.radiator;
 
 public interface RadiatorState
 {

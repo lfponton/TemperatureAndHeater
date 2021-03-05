@@ -1,4 +1,4 @@
-package mediator;
+package mediator.radiator;
 
 import util.Subject;
 

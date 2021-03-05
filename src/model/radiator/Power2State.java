@@ -1,4 +1,7 @@
-package mediator;
+package model.radiator;
+
+import mediator.radiator.Radiator;
+import mediator.radiator.RadiatorState;
 
 public class Power2State implements RadiatorState
 {

@@ -1,19 +1,19 @@
-package view.heater;
+package view.radiator;
 
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.SimpleStringProperty;
-import mediator.Radiator;
-import mediator.RadiatorState;
+import mediator.radiator.Radiator;
+import mediator.radiator.RadiatorState;
 
 import java.beans.PropertyChangeEvent;
 
-public class HeaterViewModel
+public class RadiatorViewModel
 {
   private StringProperty power;
   private RadiatorState radiatorState;
   private Radiator radiator;
 
-  public HeaterViewModel(RadiatorState radiatorState)
+  public RadiatorViewModel(RadiatorState radiatorState)
   {
     this.radiatorState = radiatorState;
     this.radiator = new Radiator();

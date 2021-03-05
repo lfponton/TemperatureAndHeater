@@ -1,32 +1,30 @@
-package view.heater;
+package view.radiator;
 
 import core.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import view.temperature.TemperatureViewModel;
 
-
-public class HeaterViewController
+public class RadiatorViewController
 {
   @FXML private Label powerLabel;
 
   private ViewHandler viewHandler;
-  private HeaterViewModel heaterViewModel;
+  private RadiatorViewModel radiatorViewModel;
 
-  public  void init(ViewHandler viewHandler, HeaterViewModel heaterViewModel) {
+  public  void init(ViewHandler viewHandler, RadiatorViewModel radiatorViewModel) {
     this.viewHandler = viewHandler;
-    this.heaterViewModel = heaterViewModel;
+    this.radiatorViewModel = radiatorViewModel;
 
-    powerLabel.textProperty().bind(heaterViewModel.getRadiatorPowerProperty());
+    powerLabel.textProperty().bind(radiatorViewModel.getRadiatorPowerProperty());
   }
 
   public void onUpButton(ActionEvent actionEvent) {
-    heaterViewModel.getRadiator().turnUp();
+    radiatorViewModel.getRadiator().turnUp();
   }
 
   public void onDownButton(ActionEvent actionEvent) {
-    heaterViewModel.getRadiator().turnDown();
+    radiatorViewModel.getRadiator().turnDown();
   }
 
   public void onBackButton(ActionEvent actionEvent) {

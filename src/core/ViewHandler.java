@@ -1,13 +1,11 @@
 package core;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.chart.TemperatureChartController;
-import view.chart.TemperatureChartViewModel;
-import view.heater.HeaterViewController;
+import view.table.TemperatureTableController;
+import view.radiator.RadiatorViewController;
 import view.temperature.TemperatureViewController;
 
 import java.io.IOException;
@@ -43,13 +41,13 @@ public class ViewHandler
     stage.setScene(mainScene);
   }
 
-  public void openHeaterView() {
+  public void openRadiatorView() {
     FXMLLoader loader = new FXMLLoader();
     if (heaterScene == null)
     {
-      Parent root = getRootByPath("../view/heater/HeaterView.fxml", loader);
-      HeaterViewController controller = loader.getController();
-      controller.init(this, viewModelFactory.getHeaterViewModel());
+      Parent root = getRootByPath("../view/radiator/RadiatorView.fxml", loader);
+      RadiatorViewController controller = loader.getController();
+      controller.init(this, viewModelFactory.getRadiatorViewModel());
       heaterScene = new Scene(root);
     }
     stage.setTitle("Control Heater");
@@ -60,9 +58,9 @@ public class ViewHandler
     FXMLLoader loader = new FXMLLoader();
     if (chartScene == null)
     {
-      Parent root = getRootByPath("../view/chart/TemperatureChart.fxml", loader);
-      TemperatureChartController controller = loader.getController();
-      controller.init(this, viewModelFactory.getTemperatureChartViewModel());
+      Parent root = getRootByPath("../view/table/TemperatureTable.fxml", loader);
+      TemperatureTableController controller = loader.getController();
+      controller.init(this, viewModelFactory.getTemperatureTableViewModel());
       chartScene = new Scene(root);
     }
     stage.setTitle("Temperature Chart");

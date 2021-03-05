@@ -1,7 +1,9 @@
 package external;
 
-import mediator.Radiator;
-import mediator.TemperatureModel;
+import mediator.radiator.Radiator;
+import mediator.temperature.TemperatureModel;
+
+import java.util.Random;
 
 public class Thermometer implements Runnable
 {
@@ -11,11 +13,11 @@ public class Thermometer implements Runnable
   private TemperatureModel temperatureModel;
   private Radiator radiator;
   private ExternalTemperature outdoorTemperature;
-  private static final double HIGH = 20;
-  private static final double LOW = -20;
+  private static final double HIGH = 24;
+  private static final double LOW = 10;
 
-  public Thermometer(String id, double t, int d, ExternalTemperature t0, TemperatureModel model,
-      Radiator radiator)
+  public Thermometer(String id, double t, int d, ExternalTemperature t0,
+      TemperatureModel model, Radiator radiator)
   {
     this.id = id;
     currentTemperature = t;
@@ -23,13 +25,7 @@ public class Thermometer implements Runnable
     outdoorTemperature = t0;
     this.radiator = radiator;
     temperatureModel = model;
-  }
 
-  public Thermometer(String id, ExternalTemperature t0, TemperatureModel model)
-  {
-    this.id = id;
-    outdoorTemperature = t0;
-    temperatureModel = model;
   }
 
   /**
@@ -64,12 +60,13 @@ public class Thermometer implements Runnable
     return t;
   }
 
-
-  public static double getHigh() {
+  public static double getHigh()
+  {
     return HIGH;
   }
 
-  public static double getLow() {
+  public static double getLow()
+  {
     return LOW;
   }
 
@@ -77,14 +74,15 @@ public class Thermometer implements Runnable
   {
     while (true)
     {
-        currentTemperature = temperature(currentTemperature,
-            radiator.getPower(), distance, outdoorTemperature.getExternalTemperature(), 6);
-        System.out.println("Id: " + id + ", Temp: " + currentTemperature);
-        temperatureModel
-            .addTemperature(id, currentTemperature);
+      Random r = new Random();
+      int seconds = r.nextInt((8 - 4) + 1) + 4;
+      currentTemperature = temperature(currentTemperature, radiator.getPower(),
+          distance, outdoorTemperature.getExternalTemperature(), seconds);
+      System.out.println("Id: " + id + ", Temp: " + currentTemperature);
+      temperatureModel.addTemperature(id, currentTemperature);
       try
       {
-        Thread.sleep(10000);
+        Thread.sleep(seconds * 1000);
       }
       catch (InterruptedException e)
       {

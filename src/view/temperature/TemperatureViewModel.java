@@ -3,8 +3,8 @@ package view.temperature;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import mediator.TemperatureModel;
-import model.Temperature;
+import mediator.temperature.TemperatureModel;
+import model.temperature.Temperature;
 
 import java.beans.PropertyChangeEvent;
 

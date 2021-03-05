@@ -1,9 +1,9 @@
 package core;
 
-import mediator.Power2State;
-import mediator.RadiatorState;
-import mediator.TemperatureModel;
-import mediator.TemperatureModelManager;
+import model.radiator.Power2State;
+import mediator.radiator.RadiatorState;
+import mediator.temperature.TemperatureModel;
+import mediator.temperature.TemperatureModelManager;
 
 public class ModelFactory
 {

@@ -1,4 +1,4 @@
-package model;
+package model.temperature;
 
 import java.util.ArrayList;
 import java.util.List;

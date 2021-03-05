@@ -19,9 +19,9 @@ public class TemperatureApp extends Application
         modelFactory.getTemperatureModel());
 
     Thread t1 = new Thread(new Thermometer("t1", 10, 1, externalTemperature,
-        modelFactory.getTemperatureModel(), viewModelFactory.getHeaterViewModel().getRadiator()));
+        modelFactory.getTemperatureModel(), viewModelFactory.getRadiatorViewModel().getRadiator()));
     Thread t2 = new Thread(new Thermometer("t2", 10, 7, externalTemperature,
-        modelFactory.getTemperatureModel(), viewModelFactory.getHeaterViewModel().getRadiator()));
+        modelFactory.getTemperatureModel(), viewModelFactory.getRadiatorViewModel().getRadiator()));
     Thread t0 = new Thread(externalTemperature);
 
     t0.setDaemon(true);

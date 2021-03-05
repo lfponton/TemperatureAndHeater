@@ -1,8 +1,8 @@
-package mediator;
+package mediator.temperature;
 
 import external.Thermometer;
-import model.Temperature;
-import model.TemperatureList;
+import model.temperature.Temperature;
+import model.temperature.TemperatureList;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -40,18 +40,12 @@ public class TemperatureModelManager implements TemperatureModel
   @Override public void addOutdoorTemperature(double outdoorTemperature)
   {
     Temperature t = new Temperature("t0", outdoorTemperature);
-    this.temperatureList.addOutdoorTemperature(t);
     support.firePropertyChange("OutdoorTemperatureChange", null, t);
   }
 
   @Override public Temperature getLastInsertedIndoorTemperature(String id)
   {
     return temperatureList.getLastIndoorTemperature(id);
-  }
-
-  @Override public Temperature getLatInsertedOutdoorTemperature()
-  {
-    return temperatureList.getLatOutdoorTemperature();
   }
 
   @Override public void addListener(PropertyChangeListener listener)

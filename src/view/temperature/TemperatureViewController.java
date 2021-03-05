@@ -28,9 +28,9 @@ public class TemperatureViewController
     warningLabel2.textProperty().bind(temperatureViewModel.getWarning2());
   }
 
-  public void onControlHeaterButton(ActionEvent actionEvent)
+  public void onControlRadiatorButton(ActionEvent actionEvent)
   {
-    viewHandler.openHeaterView();
+    viewHandler.openRadiatorView();
   }
 
   public  void onViewChartButton(ActionEvent actionEvent)
