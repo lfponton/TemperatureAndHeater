@@ -14,8 +14,8 @@ public class ViewHandler
 {
   private Stage stage;
   private Scene mainScene;
-  private Scene heaterScene;
-  private Scene chartScene;
+  private Scene radiatorScene;
+  private Scene tableScene;
   private ViewModelFactory viewModelFactory;
 
   public ViewHandler(Stage stage, ViewModelFactory viewModelFactory) {
@@ -43,28 +43,28 @@ public class ViewHandler
 
   public void openRadiatorView() {
     FXMLLoader loader = new FXMLLoader();
-    if (heaterScene == null)
+    if (radiatorScene == null)
     {
       Parent root = getRootByPath("../view/radiator/RadiatorView.fxml", loader);
       RadiatorViewController controller = loader.getController();
       controller.init(this, viewModelFactory.getRadiatorViewModel());
-      heaterScene = new Scene(root);
+      radiatorScene = new Scene(root);
     }
     stage.setTitle("Control Heater");
-    stage.setScene(heaterScene);
+    stage.setScene(radiatorScene);
   }
 
-  public void openTemperatureChartView() {
+  public void openTemperatureTableView() {
     FXMLLoader loader = new FXMLLoader();
-    if (chartScene == null)
+    if (tableScene == null)
     {
       Parent root = getRootByPath("../view/table/TemperatureTable.fxml", loader);
       TemperatureTableController controller = loader.getController();
       controller.init(this, viewModelFactory.getTemperatureTableViewModel());
-      chartScene = new Scene(root);
+      tableScene = new Scene(root);
     }
     stage.setTitle("Temperature Chart");
-    stage.setScene(chartScene);
+    stage.setScene(tableScene);
   }
 
   private Parent getRootByPath(String path, FXMLLoader loader)

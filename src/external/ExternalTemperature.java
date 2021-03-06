@@ -36,11 +36,6 @@ public class ExternalTemperature implements Runnable
     return externalTemperature;
   }
 
-  public void setExternalTemperature(double externalTemperature)
-  {
-    this.externalTemperature = externalTemperature;
-  }
-
   @Override public void run()
   {
     while (true)

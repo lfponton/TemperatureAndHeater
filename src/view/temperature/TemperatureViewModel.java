@@ -13,7 +13,8 @@ public class TemperatureViewModel
   private StringProperty temperature1, temperature2, outdoorTemperature, warning1, warning2;
   private TemperatureModel temperatureModel;
 
-  public TemperatureViewModel(TemperatureModel temperatureModel) {
+  public TemperatureViewModel(TemperatureModel temperatureModel)
+  {
     this.temperatureModel = temperatureModel;
     temperature1 = new SimpleStringProperty();
     temperature2 = new SimpleStringProperty();
@@ -31,16 +32,17 @@ public class TemperatureViewModel
         Temperature newIndoorTemperature = (Temperature) evt.getNewValue();
         if (newIndoorTemperature.getId().equals("t1"))
         {
-          temperature1.setValue(newIndoorTemperature.toString());
+          temperature1.setValue("Indoor " + newIndoorTemperature.toString());
         }
         else
         {
-          temperature2.setValue(newIndoorTemperature.toString());
+          temperature2.setValue("Indoor " + newIndoorTemperature.toString());
         }
       }
       if (evt.getPropertyName().equals("OutdoorTemperatureChange"))
       {
-        outdoorTemperature.setValue(((Temperature) evt.getNewValue()).toString());
+        outdoorTemperature.setValue(
+            "Outdoor " + ((Temperature) evt.getNewValue()).toString());
       }
       if (evt.getPropertyName().equals("tooHigh"))
       {
@@ -81,18 +83,26 @@ public class TemperatureViewModel
     });
   }
 
-  public StringProperty getTemperature1() {
+  public StringProperty getTemperature1()
+  {
     return temperature1;
   }
-  public StringProperty getTemperature2() {
+
+  public StringProperty getTemperature2()
+  {
     return temperature2;
   }
-  public StringProperty getOutdoorTemperature() {
-    return  outdoorTemperature;
+
+  public StringProperty getOutdoorTemperature()
+  {
+    return outdoorTemperature;
   }
-  public StringProperty getWarning1() {
+
+  public StringProperty getWarning1()
+  {
     return warning1;
   }
+
   public StringProperty getWarning2()
   {
     return warning2;

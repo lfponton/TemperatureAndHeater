@@ -6,19 +6,13 @@ import java.util.List;
 public class TemperatureList
 {
   private List<Temperature> indoorTemperatureList;
-  private List<Temperature> outdoorTemperatureList;
 
   public TemperatureList() {
     this.indoorTemperatureList = new ArrayList<>();
-    this.outdoorTemperatureList = new ArrayList<>();
   }
 
   public void addIndoorTemperature(Temperature temperature) {
     indoorTemperatureList.add(temperature);
-  }
-
-  public void addOutdoorTemperature(Temperature temperature) {
-    outdoorTemperatureList.add(temperature);
   }
 
   public Temperature getLastIndoorTemperature(String id) {
@@ -34,14 +28,5 @@ public class TemperatureList
       }
     }
     return null;
-  }
-
-  public Temperature getLatOutdoorTemperature() {
-    if (outdoorTemperatureList.size() < 1) {
-      return null;
-    }
-    else {
-      return outdoorTemperatureList.get(outdoorTemperatureList.size() - 1);
-    }
   }
 }

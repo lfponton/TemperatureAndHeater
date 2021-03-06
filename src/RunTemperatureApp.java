@@ -1,5 +1,3 @@
-package core;
-
 import javafx.application.Application;
 
 public class RunTemperatureApp

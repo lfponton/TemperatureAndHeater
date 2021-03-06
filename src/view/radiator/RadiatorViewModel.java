@@ -24,7 +24,7 @@ public class RadiatorViewModel
 
   public void updatePowerState(PropertyChangeEvent evt)
   {
-    power.set(String.valueOf(evt.getNewValue()));
+    power.set(String.valueOf("Power Level: " + evt.getNewValue()));
   }
 
   public StringProperty getRadiatorPowerProperty()

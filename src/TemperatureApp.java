@@ -1,5 +1,6 @@
-package core;
-
+import core.ModelFactory;
+import core.ViewHandler;
+import core.ViewModelFactory;
 import external.ExternalTemperature;
 import external.Thermometer;
 import javafx.application.Application;

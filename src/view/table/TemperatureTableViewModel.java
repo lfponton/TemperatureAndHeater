@@ -16,10 +16,10 @@ public class TemperatureTableViewModel
   {
     this.temperatureModel = temperatureModel;
     temperatures = FXCollections.observableArrayList();
-    this.temperatureModel.addListener(this::updateTemperatureChart);
+    this.temperatureModel.addListener(this::updateTemperatureTable);
   }
 
-  public void updateTemperatureChart(PropertyChangeEvent evt)
+  public void updateTemperatureTable(PropertyChangeEvent evt)
   {
     if (evt.getPropertyName().equals("IndoorTemperatureChange"))
     {

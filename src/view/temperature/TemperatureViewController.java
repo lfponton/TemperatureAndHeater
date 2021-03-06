@@ -7,8 +7,8 @@ import javafx.scene.control.Label;
 
 public class TemperatureViewController
 {
-  @FXML private Label temperature1Label1;
-  @FXML private Label temperature1Label2;
+  @FXML private Label temperature1Label;
+  @FXML private Label temperature2Label;
   @FXML private Label outdoorTemperatureLabel;
   @FXML private Label warningLabel1;
   @FXML private Label warningLabel2;
@@ -21,8 +21,8 @@ public class TemperatureViewController
     this.viewHandler = viewHandler;
     this.temperatureViewModel = temperatureViewModel;
 
-    temperature1Label1.textProperty().bind(temperatureViewModel.getTemperature1());
-    temperature1Label2.textProperty().bind(temperatureViewModel.getTemperature2());
+    temperature1Label.textProperty().bind(temperatureViewModel.getTemperature1());
+    temperature2Label.textProperty().bind(temperatureViewModel.getTemperature2());
     outdoorTemperatureLabel.textProperty().bind(temperatureViewModel.getOutdoorTemperature());
     warningLabel1.textProperty().bind(temperatureViewModel.getWarning1());
     warningLabel2.textProperty().bind(temperatureViewModel.getWarning2());
@@ -33,8 +33,8 @@ public class TemperatureViewController
     viewHandler.openRadiatorView();
   }
 
-  public  void onViewChartButton(ActionEvent actionEvent)
+  public  void onViewTableButton(ActionEvent actionEvent)
   {
-    viewHandler.openTemperatureChartView();
+    viewHandler.openTemperatureTableView();
   }
 }
